@@ -41,14 +41,14 @@ jobs:
         run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
-      
+      # ignore vue dependency when uploading
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
         with:
           name: python-app
           path: |
             . 
-            !node_modules/  # ignore vue dependency when uploading
+            !node_modules/  
             !venv/
 
   deploy:
