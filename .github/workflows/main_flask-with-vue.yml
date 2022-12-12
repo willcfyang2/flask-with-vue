@@ -16,11 +16,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+          
       - name: Set up Python version
         uses: actions/setup-python@v1
         with:
           python-version: '3.8'
+          
+      # build npm to dist directory
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install and build Vue.js project
+        run: |
+          npm install
+          npm run build
 
       - name: Create and start virtual environment
         run: |
@@ -38,6 +48,7 @@ jobs:
           name: python-app
           path: |
             . 
+            !node_modules/  # ignore vue dependency when uploading
             !venv/
 
   deploy:
