@@ -48,7 +48,7 @@ jobs:
           name: python-app
           path: |
             . 
-            !node_modules/  
+            !node_modules/
             !venv/
 
   deploy:
